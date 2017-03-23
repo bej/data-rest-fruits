@@ -1,5 +1,8 @@
 package de.derjonk;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import javax.persistence.*;
 
 /**
@@ -7,6 +10,11 @@ import javax.persistence.*;
  */
 @Entity
 @Inheritance
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Apple.class, name = "Apple"),
+        @JsonSubTypes.Type(value = Orange.class, name = "Orange")
+})
 public abstract class Fruit {
 
     @Id
@@ -30,4 +38,5 @@ public abstract class Fruit {
     public void setName(final String name) {
         this.name = name;
     }
+
 }

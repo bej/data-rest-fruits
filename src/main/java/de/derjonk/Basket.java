@@ -17,7 +17,8 @@ public class Basket {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    @OrderColumn
     private List<Fruit> fruits = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)

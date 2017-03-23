@@ -56,6 +56,11 @@ public class DataRestFruitsApplicationTests {
 				.andExpect(status().isCreated());
 	}
 
+	@Test
+	public void testCreateAppleAsFruit() throws Exception {
+		mvc.perform(post("/fruits").content(json(ImmutableMap.of("name", "apple as fruit", "type", "Apple"))))
+				.andExpect(status().isCreated());
+	}
 
 	@Test
 	public void testCreateBasket() throws Exception {
